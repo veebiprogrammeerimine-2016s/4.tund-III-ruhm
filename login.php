@@ -87,14 +87,15 @@
 	}	
 	
 	
-	
+	$notice = "";
 	// mõlemad login vormi väljad on täidetud
 	if (	isset($_POST["loginEmail"]) && 
 			isset($_POST["loginPassword"]) && 
 			!empty($_POST["loginEmail"]) && 
 			!empty($_POST["loginPassword"]) 
 	) {
-		login($_POST["loginEmail"], $_POST["loginPassword"]);
+		$notice = login($_POST["loginEmail"], $_POST["loginPassword"]);
+		
 	}
 	
 ?>
@@ -106,7 +107,7 @@
 	<body>
 
 		<h1>Logi sisse</h1>
-		
+		<p style="color:red;"><?php echo $notice; ?></p>
 		<form method="POST">
 			
 			<label>E-post</label><br>

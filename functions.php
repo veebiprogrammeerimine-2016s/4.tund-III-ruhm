@@ -31,6 +31,8 @@
 	
 	function login($email, $password) {
 		
+		$notice = "";
+		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"],  $GLOBALS["serverPassword"],  $GLOBALS["database"]);
 		
 		$stmt = $mysqli->prepare("
@@ -59,13 +61,15 @@
 				echo "Kasutaja ".$id." logis sisse";
 				
 			} else {
-				echo "Vale parool!";
+				$notice = "Vale parool!";
 			}
 			
 		} else {
 			// ei leitud ühtegi rida
-			echo "Sellist emaili ei ole!";
+			$notice = "Sellist emaili ei ole!";
 		}
+		
+		return $notice;
 	}
 	
 	
