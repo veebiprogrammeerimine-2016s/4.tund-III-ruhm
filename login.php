@@ -1,6 +1,7 @@
 <?php 
 
 	require("../../../config.php");
+	require("functions.php");
 
 	//var_dump($_GET);
 	//echo "<br>";
@@ -80,32 +81,8 @@
 
 		echo "räsi ".$password."<br>";
 		
-		//ühendus
-		$database = "if16_romil";
-		$mysqli = new mysqli($serverHost, $serverUsername, $serverPassword, $database);
-	
-		//käsk
-		$stmt = $mysqli->prepare("INSERT INTO user_sample 
-		(email, password) VALUES (?, ?)");
-		
-		echo $mysqli->error;
-		
-		// s - string
-		// i - int
-		// d - decimal/double
-		//iga küsimärgi jaoks üks täht, mis tüüpi on
-		$stmt->bind_param("ss", $signupEmail, $password );
-		
-		//täida käsku
-		if ( $stmt->execute() ) {
-			
-			echo "salvestamine õnnestus";
-			
-		} else {
-			
-			echo "ERROR ".$stmt->error;
-		}
-		
+		//kutsun funktsiooni, et salvestada
+		signup($signupEmail, $password);
 		
 	}	
 	
